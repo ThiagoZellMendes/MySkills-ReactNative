@@ -1,7 +1,17 @@
-import React from 'react';
-import {View , Text, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
+import React, { useState } from 'react';
+import {View, Text, StyleSheet, TextInput, FlatList} from 'react-native';
+
+import { Button } from '../components/Button'
+import { SkillCard } from '../components/SkillCard';
 
 export function Home(){
+  const [newSkill, setNewSkill] = useState('');
+  const [mySkills, setMySkills] = useState([]);
+
+  function handleAddNewSkill(){
+    setMySkills(oldState =>[...oldState, newSkill]);
+  }
+
   return (
     <View style={styles.container}>
      <Text style={styles.title}>Welcome, Thiago</Text>
@@ -9,19 +19,24 @@ export function Home(){
     <TextInput 
       style={styles.input}
       placeholder="New Skill"
-      placeholderTextColor="#555" 
+      placeholderTextColor="#555"
+      onChangeText={ setNewSkill } 
     />
 
-    <TouchableOpacity 
-      style={styles.button}
-      activeOpacity={0.7}
-    >
-      <Text style={styles.textButton}>Add</Text>
-    </TouchableOpacity>
-
-    <Text style={[styles.title, {marginTop: 50 }]}>
-      My Skills
+    <Button onPress={handleAddNewSkill} />
+  
+    <Text style={[styles.title, {marginVertical: 50 }]}>
+      My Skill
     </Text>
+
+    <FlatList
+      data={ mySkills }
+      keyExtractor= { item => item }
+      renderItem={( { item } ) => (
+        <SkillCard skill={ item }  />
+      )}
+    />
+
     
     </View>
   )
@@ -40,22 +55,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   input: {
-    backgroundColor: '#1F1e25',
+    backgroundColor: '#1F1E25',
+    color: '#fff',
     fontSize: 18,
     padding: 10,
     marginTop: 30,
     borderRadius: 10
   },
-  button:{
-    backgroundColor: '#A370F7',
-    padding: 15,
-    borderRadius: 7,
-    alignItems: 'center',
-    marginTop: 20
-  },
-  textButton: {
-    color: '#FFF',
-    fontSize: 17,
-    fontWeight: 'bold'
-  }
 })
