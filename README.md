@@ -21,11 +21,11 @@
 ## 💻 Sobre o projeto
 
   - Mini-Aplicativo mobile, desenvolvido para praticar aprendizados adquiridos no curso "IGNITE" da RocketSeat em React-Native;
-  - Nele o usuario pode adicionar e remover habilidades;
-  - O projeto inicialmente feito em JavaScript puro, mas no decorrer da criação foi refatorado usando TypeScript;
+  - Nele o usuário pode adicionar e remover habilidades;
+  - O projeto inicialmente feito em JavaScript puro, e no decorrer da criação foi refatorado usando TypeScript;
   - Foram ultilizadas funções "Hooks" como useStates para controle e atualizações de estados da aplicação,
-    assim como useEffect para rederizar componetes apos atualização do mesmo;
-  - Todos os componentes foram criados separadamente para serem reaproveitados caso necessario.
+    assim como useEffect para rederizar componentes após atualização do mesmo;
+  - Todos os componentes foram criados separadamente para serem reaproveitados caso necessário.
 
 
 ## 🎨 Layout
