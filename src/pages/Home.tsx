@@ -1,18 +1,41 @@
 import React, { useState, useEffect } from 'react';
-import {View, Text, StyleSheet, TextInput, FlatList, StatusBar} from 'react-native';
+import {View, Text, StyleSheet, TextInput, FlatList, Alert} from 'react-native';
 
 import { Button } from '../components/Button'
 import { SkillCard } from '../components/SkillCard';
 
 export function Home(){
   const [newSkill, setNewSkill] = useState('');
-  const [mySkills, setMySkills] = useState([]);
+  const [mySkills, setMySkills] = useState<SkillDate[]>([]);
   const [gretting, setGretting] = useState('');
+
+  interface SkillDate {
+    id: string;
+    name: string;
+  }
   
+  //adiciona uma Skill
   function handleAddNewSkill(){
-    setMySkills(oldState =>[...oldState, newSkill]);
+    const data = {
+      id: String(new Date().getTime()),
+      name: newSkill
+    }
+    if(newSkill == ''){
+      Alert.alert('Escreva uma Skill')
+    }else{
+      setMySkills(oldState =>[...oldState, data]);
+    }
+  }
+  
+  //remove uma skill ao clicar nela.
+  function handleRemoveSkill(id: string) {
+    setMySkills(oldState => oldState.filter(
+      skill => skill.id != id
+    ));
+
   }
 
+  // useEffect faz com que aconteça novamente a rederização de "Home", sempre que 'gretting(State)' for alterado.
   useEffect(() => {
     const currentHour = new Date().getHours();
 
@@ -29,8 +52,6 @@ export function Home(){
   return (
     <View style={styles.container}>
 
-    <StatusBar  barStyle='light-content' />
-    
     <Text style={styles.title}>Welcome, Thiago</Text>
     
     <Text style={styles.gretting}>
@@ -40,21 +61,29 @@ export function Home(){
     <TextInput 
       style={styles.input}
       placeholder="New Skill"
-      placeholderTextColor="#555"
+      placeholderTextColor="#F0E68C"
       onChangeText={ setNewSkill } 
     />
 
-    <Button onPress={handleAddNewSkill} />
+    <Button 
+      onPress={handleAddNewSkill}
+      title= "Add"
+     />
   
-    <Text style={[styles.title, {marginVertical: 50 }]}>
-      My Skill
+    <Text style={[styles.title, { marginTop: 50, textAlign: 'center' }]}>
+      My Skills
     </Text>
-
+    <Text style={styles.line}>
+      _____________________________________________________
+    </Text>
     <FlatList
       data={ mySkills }
-      keyExtractor= { item => item }
+      keyExtractor= { item => item.id }
       renderItem={( { item } ) => (
-        <SkillCard skill={ item }  />
+        <SkillCard 
+        skill={ item.name }  
+        onPress={() => handleRemoveSkill(item.id)}
+        />
       )}
     />
 
@@ -66,12 +95,12 @@ export function Home(){
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#121015',
+    backgroundColor: '#000000',
     paddingHorizontal: 20,
     paddingVertical: 70,  
   },
   title: {
-    color: '#fff',
+    color: '#FFFF00',
     fontSize: 24,
     fontWeight: 'bold'
   },
@@ -84,7 +113,10 @@ const styles = StyleSheet.create({
     borderRadius: 10
   },
   gretting:{
-    color: '#FFF',
+    color: '#FFD700',
     marginLeft: 10,
+  },
+  line: {
+    color: '#FFD700'
   }
 })
