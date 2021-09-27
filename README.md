@@ -39,7 +39,6 @@
 
 As seguintes ferramentas foram usadas na construção do projeto:
 
-- [Node.js][nodejs]
 - [React Native][rn]
 - [JavaScript][javascript]
 - [TypeScript][typescript]
@@ -54,7 +53,7 @@ O projeto foi criando em "CLI" e com o gerenciador de pacotes "NPX".
 ### Pré-requisitos
 
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
-[Git](https://git-scm.com), [Node.js][nodejs]. 
+[Git](https://git-scm.com). 
 Além disto é bom ter um editor para trabalhar com o código como [VSCode][vscode]
 
 ### 🎲 Rodando o App:
@@ -90,7 +89,6 @@ Este projeto esta sobe a licença MIT.
 
 Feito com Muito Carinho por Thiago Mendes 👋🏽 [Entre em contato!](https://www.linkedin.com/in/thiago-mendes-44176249/)
 
-[nodejs]: https://nodejs.org/
 [rn]: https://facebook.github.io/react-native/
 [yarn]: https://yarnpkg.com/
 [TypeScript]: https://www.typescriptlang.org/pt/
