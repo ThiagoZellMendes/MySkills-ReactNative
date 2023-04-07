@@ -31,7 +31,7 @@
 ## 🎨 Layout
 
 <p align="center">
-  <img alt="MySkills" title="#MySkills" src="./src/assets/img/MySkills.PNG" width="200px">
+  <img alt="MySkills" title="#MySkills" src="./src/assets/img/MySkills.PNG" width="350px">
 </p>
 
 
